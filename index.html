@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enlaces Cortos - DigitalPlat One</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .glass { background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); }
+    .glass-dark { background: rgba(15,23,42,0.7); backdrop-filter: blur(8px); }
+    .sidebar-item.active { background: rgba(99,102,241,0.09); color: #111827; }
+    .sidebar-item.active .text-slate-400 { color: #6366f1 !important; }
+    .sidebar-item:hover { background: rgba(226,232,240,0.8); }
+    .dark .sidebar-item:hover { background: rgba(255,255,255,0.05); }
+  </style>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            border: 'hsl(var(--border))',
+            input: 'hsl(var(--input))',
+            ring: 'hsl(var(--ring))',
+            background: 'hsl(var(--background))',
+            foreground: 'hsl(var(--foreground))',
+            primary: {
+              DEFAULT: 'hsl(var(--primary))',
+              foreground: 'hsl(var(--primary-foreground))',
+            },
+            secondary: {
+              DEFAULT: 'hsl(var(--secondary))',
+              foreground: 'hsl(var(--secondary-foreground))',
+            },
+            muted: {
+              DEFAULT: 'hsl(var(--muted))',
+              foreground: 'hsl(var(--muted-foreground))',
+            },
+            accent: {
+              DEFAULT: 'hsl(var(--accent))',
+              foreground: 'hsl(var(--accent-foreground))',
+            },
+            card: {
+              DEFAULT: 'hsl(var(--card))',
+              foreground: 'hsl(var(--card-foreground))',
+            },
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased transition-colors duration-300">
+
+  <!-- Overlay for mobile sidebar -->
+  <div id="sidebar-overlay" class="fixed inset-0 z-40 bg-slate-900/70 backdrop-blur-sm hidden lg:hidden" onclick="toggleSidebar()"></div>
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-72 flex-col overflow-y-auto border-r border-slate-200 bg-white px-3 py-4 transition-transform duration-300 lg:translate-x-0 lg:relative lg:static lg:inset-0 lg:z-auto lg:border-r lg:bg-white dark:bg-slate-900 dark:border-slate-800 -translate-x-full lg:translate-x-0">
+    <div class="mb-4 flex items-center gap-2 px-3 py-2">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold text-lg">DP</div>
+      <div>
+        <p class="text-sm font-bold tracking-tight text-slate-900 dark:text-white">DigitalPlat One</p>
+        <p class="mt-[1px] text-xs text-muted-foreground">by EdgeAlphix</p>
+      </div>
+    </div>
+
+    <button onclick="toggleSidebar()" class="mb-4 flex w-full items-center gap-2 rounded-lg border border-transparent bg-slate-100 px-3 py-2.5 text-left text-xs text-slate-500 transition-colors hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-slate-800/80 dark:text-slate-400 dark:hover:bg-slate-800">
+      <i data-lucide="command" class="h-4 w-4 shrink-0"></i>
+      <span>Cmd+K para buscar</span>
+    </button>
+
+    <nav aria-label="Navegación principal" class="flex flex-1 flex-col gap-1">
+      <!-- Dashboard -->
+      <a href="#" class="group flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="layout-dashboard" class="h-4 w-4 shrink-0 text-slate-400 group-hover:text-slate-700 dark:group-hover:text-white"></i>
+        <span class="min-w-0 flex-1">Dashboard Overview</span>
+      </a>
+      <!-- Getting started -->
+      <a href="#" class="group flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="list-checks" class="h-4 w-4 shrink-0 text-slate-400 group-hover:text-slate-700 dark:group-hover:text-white"></i>
+        <span class="min-w-0 flex-1">Getting started</span>
+      </a>
+      <!-- Domains -->
+      <a href="#" class="group flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="globe" class="h-4 w-4 shrink-0 text-slate-400 group-hover:text-slate-700 dark:group-hover:text-white"></i>
+        <span class="min-w-0 flex-1">DigitalPlat Domains</span>
+      </a>
+      <!-- EdgeTerm -->
+      <a href="#" class="group flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="square-terminal" class="h-4 w-4 shrink-0 text-slate-400 group-hover:text-slate-700 dark:group-hover:text-white"></i>
+        <span class="min-w-0 flex-1">EdgeTerm</span>
+      </a>
+
+      <!-- Assets group -->
+      <div class="mb-2 mt-5 pt-2 px-3">
+        <p class="text-[10px] font-medium uppercase tracking-wider text-slate-400">Assets</p>
+      </div>
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="globe" class="h-4 w-4 shrink-0 text-slate-400"></i>
+        <span class="flex-1">Domains</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180"></i>
+      </button>
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="globe" class="h-4 w-4 shrink-0 text-slate-400"></i>
+        <span class="flex-1">DNS</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180"></i>
+      </button>
+
+      <!-- Sites & links (active) -->
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-900 bg-indigo-50/50 transition-colors hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-indigo-500/15 dark:text-white">
+        <i data-lucide="layout-template" class="h-4 w-4 shrink-0 text-indigo-600"></i>
+        <span class="flex-1">Sites &amp; links</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform rotate-180"></i>
+      </button>
+      <div class="mt-1 space-y-0.5 pl-3">
+        <a href="#" class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium text-indigo-600 bg-indigo-50 transition-colors hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-indigo-400 dark:bg-indigo-900/20">
+          <i data-lucide="link-2" class="h-4 w-4 shrink-0 text-indigo-600"></i>
+          <span class="min-w-0 flex-1">Short Links</span>
+        </a>
+        <a href="#" class="group flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+          <i data-lucide="layout-template" class="h-4 w-4 shrink-0 text-slate-400 group-hover:text-slate-700 dark:group-hover:text-white"></i>
+          <span class="min-w-0 flex-1">Pages</span>
+        </a>
+        <a href="#" class="group flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+          <i data-lucide="list-checks" class="h-4 w-4 shrink-0 text-slate-400 group-hover:text-slate-700 dark:group-hover:text-white"></i>
+          <span class="min-w-0 flex-1">Forms</span>
+        </a>
+        <a href="#" class="group flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+          <i data-lucide="file-archive" class="h-4 w-4 shrink-0 text-slate-400 group-hover:text-slate-700 dark:group-hover:text-white"></i>
+          <span class="min-w-0 flex-1">Export Center</span>
+        </a>
+      </div>
+
+      <!-- Infrastructure -->
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="server" class="h-4 w-4 shrink-0 text-slate-400"></i>
+        <span class="flex-1">Infrastructure</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180"></i>
+      </button>
+
+      <!-- Account management -->
+      <div class="mb-2 mt-5 pt-2 px-3">
+        <p class="text-[10px] font-medium uppercase tracking-wider text-slate-400">Account management</p>
+      </div>
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="credit-card" class="h-4 w-4 shrink-0 text-slate-400"></i>
+        <span class="flex-1">Billing</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180"></i>
+      </button>
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="user-round" class="h-4 w-4 shrink-0 text-slate-400"></i>
+        <span class="flex-1">Account</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180"></i>
+      </button>
+
+      <!-- More products -->
+      <div class="mb-2 mt-5 pt-2 px-3">
+        <p class="text-[10px] font-medium uppercase tracking-wider text-slate-400">More products</p>
+      </div>
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="sparkles" class="h-4 w-4 shrink-0 text-slate-400"></i>
+        <span class="flex-1">AI</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180"></i>
+      </button>
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="app-window" class="h-4 w-4 shrink-0 text-slate-400"></i>
+        <span class="flex-1">Apps</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180"></i>
+      </button>
+
+      <!-- Resources -->
+      <div class="mb-2 mt-5 pt-2 px-3">
+        <p class="text-[10px] font-medium uppercase tracking-wider text-slate-400">Resources</p>
+      </div>
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="book-open" class="h-4 w-4 shrink-0 text-slate-400"></i>
+        <span class="flex-1">Docs</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180"></i>
+      </button>
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="gift" class="h-4 w-4 shrink-0 text-slate-400"></i>
+        <span class="flex-1">Community</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180"></i>
+      </button>
+    </nav>
+
+    <div class="mt-4 flex gap-2 px-3">
+      <button class="inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-lg text-sm font-medium transition-colors duration-150 bg-transparent text-slate-700 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white h-8 w-10 lg:hidden">
+        <i data-lucide="chevron-left" class="h-4 w-4 mr-1"></i>
+        <span>Close</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <div class="min-w-0 flex min-h-screen flex-1 flex-col transition-all duration-300 lg:pl-72">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/80 backdrop-blur-md px-4 py-3 dark:bg-slate-900/80 dark:border-slate-800">
+      <div class="mx-auto flex max-w-[1440px] items-center gap-2 sm:gap-3 md:px-6 lg:px-8">
+        <!-- Mobile menu button -->
+        <button onclick="toggleSidebar()" class="inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-lg text-sm font-medium transition-colors duration-150 bg-transparent text-slate-700 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white h-10 w-10 lg:hidden" aria-label="Abrir navegación">
+          <i data-lucide="menu" class="h-5 w-5"></i>
+        </button>
+        <!-- Desktop menu button -->
+        <button class="items-center justify-center gap-1 whitespace-nowrap rounded-lg text-sm font-medium transition-colors duration-150 bg-transparent text-slate-700 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white h-10 w-10 hidden lg:inline-flex" aria-label="Colapsar navegación">
+          <i data-lucide="menu" class="h-5 w-5"></i>
+        </button>
+
+        <!-- Page title -->
+        <div class="min-w-0 flex-1">
+          <h1 class="hidden truncate text-lg font-semibold tracking-tight text-slate-900 dark:text-white sm:block">Short Links</h1>
+        </div>
+
+        <!-- Search (desktop) -->
+        <button class="items-center gap-1.5 whitespace-nowrap rounded-lg text-sm font-medium transition-colors duration-150 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 h-10 px-4 py-2 hidden min-w-[220px] justify-between rounded-lg bg-slate-100 text-slate-500 lg:inline-flex">
+          <span class="inline-flex items-center gap-1">
+            <i data-lucide="search" class="h-4 w-4"></i>
+            <span>Search</span>
+          </span>
+          <span class="rounded-lg border border-slate-300 bg-white px-1.5 py-0.5 font-mono text-[11px] text-slate-500">Cmd+K</span>
+        </button>
+
+        <!-- Language -->
+        <button class="inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-lg text-sm font-medium transition-colors duration-150 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 h-10 py-2 w-10 gap-1.5 rounded-lg px-2 lg:w-auto lg:px-2.5">
+          <i data-lucide="globe" class="h-4 w-4"></i>
+          <span class="hidden lg:inline-flex">English</span>
+          <i data-lucide="chevron-down" class="hidden h-4 w-4 text-slate-400 lg:block"></i>
+        </button>
+
+        <!-- Theme toggle -->
+        <button id="theme-toggle" class="inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-lg text-sm font-medium transition-colors duration-150 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 h-10 w-10" aria-label="Cambiar tema">
+          <i data-lucide="moon-star" class="h-4 w-4"></i>
+        </button>
+
+        <!-- User profile -->
+        <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors duration-150 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 h-10 py-2 gap-1.5 rounded-lg px-2">
+          <span class="relative flex h-9 w-9 shrink-0 overflow-hidden rounded-full border border-slate-300">
+            <span class="flex h-full w-full items-center justify-center bg-indigo-100 text-sm font-medium text-indigo-700">U</span>
+          </span>
+          <span class="hidden xl:inline-flex">User</span>
+          <i data-lucide="chevron-down" class="hidden h-4 w-4 text-slate-400 xl:block"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main content area -->
+    <main class="min-w-0 flex-1 overflow-hidden pt-6 md:px-6 lg:px-8">
+      <div class="mx-auto w-full max-w-[1440px]">
+        <!-- Hero llamativo -->
+        <section class="relative rounded-2xl p-8 md:p-12 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-black border border-slate-800 mb-12">
+          <div class="absolute inset-0 opacity-10 pointer-events-none" aria-hidden="true">
+            <div class="absolute top-[-10%] left-[-10%] w-[30%] h-[30%] rounded-full bg-indigo-500/20 blur-[120px]"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] rounded-full bg-emerald-500/20 blur-[120px]"></div>
+          </div>
+          <div class="relative z-10 max-w-2xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold tracking-tighter uppercase mb-6">New</div>
+            <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight leading-tight mb-6">Build something<br class="hidden md:block" />people remember</h1>
+            <p class="text-lg text-slate-400 mb-8 max-w-lg leading-relaxed">A focused message with a clear next step.</p>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <button onclick="openModal()" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-emerald-500 text-white font-semibold text-sm hover:bg-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all shadow-lg shadow-emerald-500/25">
+                <i data-lucide="plus" class="h-4 w-4"></i>
+                Get started
+              </button>
+              <button class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-slate-700 bg-slate-800/50 text-slate-300 font-semibold text-sm hover:bg-slate-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-slate-500 transition-all">
+                Learn more
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <div class="space-y-6">
+          <!-- Header de la sección -->
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <h2 class="text-lg font-semibold text-slate-900 dark:text-white">Tus enlaces cortos</h2>
+              <p class="text-sm text-slate-500 dark:text-slate-400">Gestiona y monitorea tus URLs acortadas</p>
+            </div>
+            <button onclick="openModal()" class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-indigo-600 dark:hover:bg-indigo-700">
+              <i data-lucide="plus" class="h-4 w-4"></i>
+              Nuevo enlace
+            </button>
+            <button onclick="clearAllLinks()" class="inline-flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 dark:bg-red-600 dark:hover:bg-red-700">
+              <i data-lucide="trash-2" class="h-4 w-4"></i>
+              Borrar todo
+            </button>
+          </div>
+
+          <!-- Tabla de enlaces -->
+          <div class="mt-6 rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900/50 overflow-hidden shadow-sm">
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-slate-200 dark:divide-slate-800">
+                <thead class="bg-slate-50 dark:bg-slate-900/80">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">URL original</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">URL corta</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Clics</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Fecha</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Estado</th>
+                    <th class="px-6 py-3 text-right text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="links-body" class="divide-y divide-slate-200 dark:divide-slate-800"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Modal: Crear enlace -->
+          <div id="create-modal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+            <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-4">
+              <div class="rounded-xl bg-white dark:bg-slate-900 shadow-lg ring-1 ring-slate-900/10 border-none overflow-hidden">
+                <div class="bg-slate-50 px-4 py-3 dark:bg-slate-800">
+                  <h3 class="text-lg font-medium leading-6 text-slate-900 dark:text-white" id="modal-title">Crear enlace corto</h3>
+                  <button onclick="closeModal()" class="absolute right-3 top-3 rounded-md p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500" aria-label="Cerrar">
+                    <i data-lucide="x" class="h-4 w-4"></i>
+                  </button>
+                </div>
+                <div class="px-6 py-5">
+                  <form id="create-form" onsubmit="return handleCreate(event)">
+                    <div class="space-y-4">
+                      <div>
+                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">URL original</label>
+                        <input type="url" id="original-url" required placeholder="https://ejemplo.com/pagina" class="block w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all" />
+                      </div>
+                      <div>
+                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Alias personalizado (opcional)</label>
+                        <input type="text" id="custom-alias" placeholder="mi-enlace" class="block w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all" />
+                        <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">Se generará automáticamente si lo dejas vacío</p>
+                      </div>
+                    </div>
+                    <div class="mt-6 flex gap-3">
+                      <button type="button" onclick="closeModal()" class="flex-1 rounded-lg px-4 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Cancelar</button>
+                      <button type="submit" class="flex-1 rounded-lg px-4 py-2.5 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors">Crear enlace</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+
+    function setTheme(theme) {
+      if (theme === 'dark') {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    // Load saved theme or default to light
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('dark');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = html.classList.contains('dark');
+      setTheme(isDark ? 'light' : 'dark');
+    });
+
+    // Mobile sidebar toggle
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      const isOpen = !sidebar.classList.contains('-translate-x-full');
+      if (isOpen) {
+        sidebar.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+      } else {
+        sidebar.classList.remove('-translate-x-full');
+        overlay.classList.remove('hidden');
+      }
+    }
+
+    // Modal: crear enlace corto
+    const modal = document.getElementById('create-modal');
+
+    function openModal() {
+      modal.classList.remove('hidden');
+      document.getElementById('original-url').focus();
+      lucide.createIcons();
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      document.getElementById('create-form').reset();
+    }
+
+    // Cerrar modal con tecla Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+
+    const STORAGE_KEY = 'digitalplat_links';
+
+    function handleCreate(e) {
+      e.preventDefault();
+      const originalUrl = document.getElementById('original-url').value.trim();
+      const alias = document.getElementById('custom-alias').value.trim() || generateAlias(originalUrl);
+      const shortUrl = `dpl.at/${alias}`;
+      const today = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
+      const linkId = Date.now();
+
+      const newLink = { id: linkId, originalUrl, shortUrl, clicks: 0, date: today, status: 'Activo' };
+
+      const links = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      links.unshift(newLink);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(links));
+
+      renderLinks();
+      closeModal();
+      return false;
+    }
+
+    function renderLinks() {
+      const tbody = document.getElementById('links-body');
+      const links = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      tbody.innerHTML = '';
+
+      links.forEach(link => {
+        const row = document.createElement('tr');
+        row.className = 'group relative bg-white dark:bg-slate-900/50 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200';
+        const statusColor = link.status === 'Activo' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400';
+        row.innerHTML = `
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${escapeHtml(link.originalUrl)}</td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center gap-2">
+              <span class="font-mono text-sm text-indigo-600 dark:text-indigo-400">${escapeHtml(link.shortUrl)}</span>
+              <button class="p-1.5 rounded bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 transition-all group-hover:scale-110" onclick="copyToClipboard('${escapeHtml(link.shortUrl)}')" title="Copiar">
+                <i data-lucide="copy" class="h-4 w-4"></i>
+              </button>
+            </div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-white">${link.clicks}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">${link.date}</td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColor} shadow-sm">
+              <span class="relative flex h-1.5 w-1.5 rounded-full bg-${link.status === 'Activo' ? 'green' : 'yellow'}-500"></span>
+              ${link.status}
+            </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+            <button class="text-slate-400 hover:text-red-500 dark:hover:text-red-400 transition-colors group-hover:opacity-100" onclick="removeLink(${link.id})" title="Eliminar">
+              <i data-lucide="trash-2" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+
+      lucide.createIcons();
+    }
+
+    function removeLink(id) {
+      if (!confirm('¿Eliminar este enlace?')) return;
+      const links = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      const filtered = links.filter(l => l.id !== id);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
+      renderLinks();
+    }
+
+    function clearAllLinks() {
+      if (!confirm('¿Borrar todos los enlaces? Esta acción no se puede deshacer.')) return;
+      localStorage.removeItem(STORAGE_KEY);
+      renderLinks();
+    }
+
+    function generateAlias(url) {
+      return url
+        .replace(/^https?:\/\//, '')
+        .replace(/[^a-z0-9]+/gi, '-')
+        .replace(/^-|-$/g, '')
+        .toLowerCase()
+        .slice(0, 20) || 'enlace';
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text);
+    }
+
+    // Cargar enlaces guardados al iniciar
+    renderLinks();
+  </script>
+</body>
+</html>

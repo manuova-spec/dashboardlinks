@@ -249,8 +249,30 @@
     </header>
 
     <!-- Main content area -->
-    <main class="min-w-0 flex-1 overflow-hidden px-4 pb-12 pt-6 md:px-6 lg:px-8">
+    <main class="min-w-0 flex-1 overflow-hidden pt-6 md:px-6 lg:px-8">
       <div class="mx-auto w-full max-w-[1440px]">
+        <!-- Hero llamativo -->
+        <section class="relative rounded-2xl p-8 md:p-12 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-black border border-slate-800 mb-12">
+          <div class="absolute inset-0 opacity-10 pointer-events-none" aria-hidden="true">
+            <div class="absolute top-[-10%] left-[-10%] w-[30%] h-[30%] rounded-full bg-indigo-500/20 blur-[120px]"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] rounded-full bg-emerald-500/20 blur-[120px]"></div>
+          </div>
+          <div class="relative z-10 max-w-2xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold tracking-tighter uppercase mb-6">New</div>
+            <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight leading-tight mb-6">Build something<br class="hidden md:block" />people remember</h1>
+            <p class="text-lg text-slate-400 mb-8 max-w-lg leading-relaxed">A focused message with a clear next step.</p>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <button onclick="openModal()" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-emerald-500 text-white font-semibold text-sm hover:bg-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all shadow-lg shadow-emerald-500/25">
+                <i data-lucide="plus" class="h-4 w-4"></i>
+                Get started
+              </button>
+              <button class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-slate-700 bg-slate-800/50 text-slate-300 font-semibold text-sm hover:bg-slate-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-slate-500 transition-all">
+                Learn more
+              </button>
+            </div>
+          </div>
+        </section>
+
         <div class="space-y-6">
           <!-- Header de la sección -->
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -419,29 +441,29 @@
 
       links.forEach(link => {
         const row = document.createElement('tr');
-        row.className = 'hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors';
+        row.className = 'group relative bg-white dark:bg-slate-900/50 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200';
         const statusColor = link.status === 'Activo' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400';
         row.innerHTML = `
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-white">${escapeHtml(link.originalUrl)}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${escapeHtml(link.originalUrl)}</td>
           <td class="px-6 py-4 whitespace-nowrap">
             <div class="flex items-center gap-2">
               <span class="font-mono text-sm text-indigo-600 dark:text-indigo-400">${escapeHtml(link.shortUrl)}</span>
-              <button class="p-1.5 rounded hover:bg-slate-200 dark:hover:bg-slate-800" onclick="copyToClipboard('${escapeHtml(link.shortUrl)}')" title="Copiar">
-                <i data-lucide="copy" class="h-4 w-4 text-slate-400"></i>
+              <button class="p-1.5 rounded bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 transition-all group-hover:scale-110" onclick="copyToClipboard('${escapeHtml(link.shortUrl)}')" title="Copiar">
+                <i data-lucide="copy" class="h-4 w-4"></i>
               </button>
             </div>
           </td>
           <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-white">${link.clicks}</td>
           <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">${link.date}</td>
           <td class="px-6 py-4 whitespace-nowrap">
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColor}">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColor} shadow-sm">
               <span class="relative flex h-1.5 w-1.5 rounded-full bg-${link.status === 'Activo' ? 'green' : 'yellow'}-500"></span>
               ${link.status}
             </span>
           </td>
           <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-            <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300" onclick="removeLink(${link.id})" title="Eliminar">
-              <i data-lucide="trash-2" class="h-4 w-4"></i>
+            <button class="text-slate-400 hover:text-red-500 dark:hover:text-red-400 transition-colors group-hover:opacity-100" onclick="removeLink(${link.id})" title="Eliminar">
+              <i data-lucide="trash-2" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
             </button>
           </td>
         `;

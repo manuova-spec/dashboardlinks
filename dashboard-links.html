@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enlaces Cortos - DigitalPlat One</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .glass { background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); }
+    .glass-dark { background: rgba(15,23,42,0.7); backdrop-filter: blur(8px); }
+    .sidebar-item.active { background: rgba(99,102,241,0.09); color: #111827; }
+    .sidebar-item.active .text-slate-400 { color: #6366f1 !important; }
+    .sidebar-item:hover { background: rgba(226,232,240,0.8); }
+    .dark .sidebar-item:hover { background: rgba(255,255,255,0.05); }
+  </style>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            border: 'hsl(var(--border))',
+            input: 'hsl(var(--input))',
+            ring: 'hsl(var(--ring))',
+            background: 'hsl(var(--background))',
+            foreground: 'hsl(var(--foreground))',
+            primary: {
+              DEFAULT: 'hsl(var(--primary))',
+              foreground: 'hsl(var(--primary-foreground))',
+            },
+            secondary: {
+              DEFAULT: 'hsl(var(--secondary))',
+              foreground: 'hsl(var(--secondary-foreground))',
+            },
+            muted: {
+              DEFAULT: 'hsl(var(--muted))',
+              foreground: 'hsl(var(--muted-foreground))',
+            },
+            accent: {
+              DEFAULT: 'hsl(var(--accent))',
+              foreground: 'hsl(var(--accent-foreground))',
+            },
+            card: {
+              DEFAULT: 'hsl(var(--card))',
+              foreground: 'hsl(var(--card-foreground))',
+            },
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased transition-colors duration-300">
+
+  <!-- Overlay for mobile sidebar -->
+  <div id="sidebar-overlay" class="fixed inset-0 z-40 bg-slate-900/70 backdrop-blur-sm hidden lg:hidden" onclick="toggleSidebar()"></div>
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-72 flex-col overflow-y-auto border-r border-slate-200 bg-white px-3 py-4 transition-transform duration-300 lg:translate-x-0 lg:relative lg:static lg:inset-0 lg:z-auto lg:border-r lg:bg-white dark:bg-slate-900 dark:border-slate-800 -translate-x-full lg:translate-x-0">
+    <div class="mb-4 flex items-center gap-2 px-3 py-2">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold text-lg">DP</div>
+      <div>
+        <p class="text-sm font-bold tracking-tight text-slate-900 dark:text-white">DigitalPlat One</p>
+        <p class="mt-[1px] text-xs text-muted-foreground">by EdgeAlphix</p>
+      </div>
+    </div>
+
+    <button onclick="toggleSidebar()" class="mb-4 flex w-full items-center gap-2 rounded-lg border border-transparent bg-slate-100 px-3 py-2.5 text-left text-xs text-slate-500 transition-colors hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-slate-800/80 dark:text-slate-400 dark:hover:bg-slate-800">
+      <i data-lucide="command" class="h-4 w-4 shrink-0"></i>
+      <span>Cmd+K para buscar</span>
+    </button>
+
+    <nav aria-label="Navegación principal" class="flex flex-1 flex-col gap-1">
+      <!-- Dashboard -->
+      <a href="#" class="group flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="layout-dashboard" class="h-4 w-4 shrink-0 text-slate-400 group-hover:text-slate-700 dark:group-hover:text-white"></i>
+        <span class="min-w-0 flex-1">Dashboard Overview</span>
+      </a>
+      <!-- Getting started -->
+      <a href="#" class="group flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="list-checks" class="h-4 w-4 shrink-0 text-slate-400 group-hover:text-slate-700 dark:group-hover:text-white"></i>
+        <span class="min-w-0 flex-1">Getting started</span>
+      </a>
+      <!-- Domains -->
+      <a href="#" class="group flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="globe" class="h-4 w-4 shrink-0 text-slate-400 group-hover:text-slate-700 dark:group-hover:text-white"></i>
+        <span class="min-w-0 flex-1">DigitalPlat Domains</span>
+      </a>
+      <!-- EdgeTerm -->
+      <a href="#" class="group flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="square-terminal" class="h-4 w-4 shrink-0 text-slate-400 group-hover:text-slate-700 dark:group-hover:text-white"></i>
+        <span class="min-w-0 flex-1">EdgeTerm</span>
+      </a>
+
+      <!-- Assets group -->
+      <div class="mb-2 mt-5 pt-2 px-3">
+        <p class="text-[10px] font-medium uppercase tracking-wider text-slate-400">Assets</p>
+      </div>
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="globe" class="h-4 w-4 shrink-0 text-slate-400"></i>
+        <span class="flex-1">Domains</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180"></i>
+      </button>
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="globe" class="h-4 w-4 shrink-0 text-slate-400"></i>
+        <span class="flex-1">DNS</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180"></i>
+      </button>
+
+      <!-- Sites & links (active) -->
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-900 bg-indigo-50/50 transition-colors hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-indigo-500/15 dark:text-white">
+        <i data-lucide="layout-template" class="h-4 w-4 shrink-0 text-indigo-600"></i>
+        <span class="flex-1">Sites &amp; links</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform rotate-180"></i>
+      </button>
+      <div class="mt-1 space-y-0.5 pl-3">
+        <a href="#" class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium text-indigo-600 bg-indigo-50 transition-colors hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-indigo-400 dark:bg-indigo-900/20">
+          <i data-lucide="link-2" class="h-4 w-4 shrink-0 text-indigo-600"></i>
+          <span class="min-w-0 flex-1">Short Links</span>
+        </a>
+        <a href="#" class="group flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+          <i data-lucide="layout-template" class="h-4 w-4 shrink-0 text-slate-400 group-hover:text-slate-700 dark:group-hover:text-white"></i>
+          <span class="min-w-0 flex-1">Pages</span>
+        </a>
+        <a href="#" class="group flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+          <i data-lucide="list-checks" class="h-4 w-4 shrink-0 text-slate-400 group-hover:text-slate-700 dark:group-hover:text-white"></i>
+          <span class="min-w-0 flex-1">Forms</span>
+        </a>
+        <a href="#" class="group flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+          <i data-lucide="file-archive" class="h-4 w-4 shrink-0 text-slate-400 group-hover:text-slate-700 dark:group-hover:text-white"></i>
+          <span class="min-w-0 flex-1">Export Center</span>
+        </a>
+      </div>
+
+      <!-- Infrastructure -->
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="server" class="h-4 w-4 shrink-0 text-slate-400"></i>
+        <span class="flex-1">Infrastructure</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180"></i>
+      </button>
+
+      <!-- Account management -->
+      <div class="mb-2 mt-5 pt-2 px-3">
+        <p class="text-[10px] font-medium uppercase tracking-wider text-slate-400">Account management</p>
+      </div>
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="credit-card" class="h-4 w-4 shrink-0 text-slate-400"></i>
+        <span class="flex-1">Billing</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180"></i>
+      </button>
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="user-round" class="h-4 w-4 shrink-0 text-slate-400"></i>
+        <span class="flex-1">Account</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180"></i>
+      </button>
+
+      <!-- More products -->
+      <div class="mb-2 mt-5 pt-2 px-3">
+        <p class="text-[10px] font-medium uppercase tracking-wider text-slate-400">More products</p>
+      </div>
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="sparkles" class="h-4 w-4 shrink-0 text-slate-400"></i>
+        <span class="flex-1">AI</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180"></i>
+      </button>
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="app-window" class="h-4 w-4 shrink-0 text-slate-400"></i>
+        <span class="flex-1">Apps</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180"></i>
+      </button>
+
+      <!-- Resources -->
+      <div class="mb-2 mt-5 pt-2 px-3">
+        <p class="text-[10px] font-medium uppercase tracking-wider text-slate-400">Resources</p>
+      </div>
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="book-open" class="h-4 w-4 shrink-0 text-slate-400"></i>
+        <span class="flex-1">Docs</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180"></i>
+      </button>
+      <button class="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white">
+        <i data-lucide="gift" class="h-4 w-4 shrink-0 text-slate-400"></i>
+        <span class="flex-1">Community</span>
+        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180"></i>
+      </button>
+    </nav>
+
+    <div class="mt-4 flex gap-2 px-3">
+      <button class="inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-lg text-sm font-medium transition-colors duration-150 bg-transparent text-slate-700 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white h-8 w-10 lg:hidden">
+        <i data-lucide="chevron-left" class="h-4 w-4 mr-1"></i>
+        <span>Close</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <div class="min-w-0 flex min-h-screen flex-1 flex-col transition-all duration-300 lg:pl-72">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/80 backdrop-blur-md px-4 py-3 dark:bg-slate-900/80 dark:border-slate-800">
+      <div class="mx-auto flex max-w-[1440px] items-center gap-2 sm:gap-3 md:px-6 lg:px-8">
+        <!-- Mobile menu button -->
+        <button onclick="toggleSidebar()" class="inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-lg text-sm font-medium transition-colors duration-150 bg-transparent text-slate-700 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white h-10 w-10 lg:hidden" aria-label="Abrir navegación">
+          <i data-lucide="menu" class="h-5 w-5"></i>
+        </button>
+        <!-- Desktop menu button -->
+        <button class="items-center justify-center gap-1 whitespace-nowrap rounded-lg text-sm font-medium transition-colors duration-150 bg-transparent text-slate-700 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white h-10 w-10 hidden lg:inline-flex" aria-label="Colapsar navegación">
+          <i data-lucide="menu" class="h-5 w-5"></i>
+        </button>
+
+        <!-- Page title -->
+        <div class="min-w-0 flex-1">
+          <h1 class="hidden truncate text-lg font-semibold tracking-tight text-slate-900 dark:text-white sm:block">Short Links</h1>
+        </div>
+
+        <!-- Search (desktop) -->
+        <button class="items-center gap-1.5 whitespace-nowrap rounded-lg text-sm font-medium transition-colors duration-150 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 h-10 px-4 py-2 hidden min-w-[220px] justify-between rounded-lg bg-slate-100 text-slate-500 lg:inline-flex">
+          <span class="inline-flex items-center gap-1">
+            <i data-lucide="search" class="h-4 w-4"></i>
+            <span>Search</span>
+          </span>
+          <span class="rounded-lg border border-slate-300 bg-white px-1.5 py-0.5 font-mono text-[11px] text-slate-500">Cmd+K</span>
+        </button>
+
+        <!-- Language -->
+        <button class="inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-lg text-sm font-medium transition-colors duration-150 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 h-10 py-2 w-10 gap-1.5 rounded-lg px-2 lg:w-auto lg:px-2.5">
+          <i data-lucide="globe" class="h-4 w-4"></i>
+          <span class="hidden lg:inline-flex">English</span>
+          <i data-lucide="chevron-down" class="hidden h-4 w-4 text-slate-400 lg:block"></i>
+        </button>
+
+        <!-- Theme toggle -->
+        <button id="theme-toggle" class="inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-lg text-sm font-medium transition-colors duration-150 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 h-10 w-10" aria-label="Cambiar tema">
+          <i data-lucide="moon-star" class="h-4 w-4"></i>
+        </button>
+
+        <!-- User profile -->
+        <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors duration-150 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 h-10 py-2 gap-1.5 rounded-lg px-2">
+          <span class="relative flex h-9 w-9 shrink-0 overflow-hidden rounded-full border border-slate-300">
+            <span class="flex h-full w-full items-center justify-center bg-indigo-100 text-sm font-medium text-indigo-700">U</span>
+          </span>
+          <span class="hidden xl:inline-flex">User</span>
+          <i data-lucide="chevron-down" class="hidden h-4 w-4 text-slate-400 xl:block"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main content area -->
+    <main class="min-w-0 flex-1 overflow-hidden px-4 pb-12 pt-6 md:px-6 lg:px-8">
+      <div class="mx-auto w-full max-w-[1440px]">
+        <div class="space-y-6">
+          <!-- Skeleton placeholders (mimic original loading state) -->
+          <div class="animate-pulse rounded-xl bg-slate-200 h-10 w-64 dark:bg-slate-800"></div>
+
+          <!-- Stats grid -->
+          <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <div class="animate-pulse rounded-xl bg-slate-200 h-32 dark:bg-slate-800"></div>
+            <div class="animate-pulse rounded-xl bg-slate-200 h-32 dark:bg-slate-800"></div>
+            <div class="animate-pulse rounded-xl bg-slate-200 h-32 dark:bg-slate-800"></div>
+            <div class="animate-pulse rounded-xl bg-slate-200 h-32 dark:bg-slate-800"></div>
+          </div>
+
+          <!-- Links list / table area -->
+          <div class="animate-pulse rounded-xl bg-slate-200 h-96 dark:bg-slate-800"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+
+    function setTheme(theme) {
+      if (theme === 'dark') {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    // Load saved theme or default to light
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('dark');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = html.classList.contains('dark');
+      setTheme(isDark ? 'light' : 'dark');
+    });
+
+    // Mobile sidebar toggle
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      const isOpen = !sidebar.classList.contains('-translate-x-full');
+      if (isOpen) {
+        sidebar.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+      } else {
+        sidebar.classList.remove('-translate-x-full');
+        overlay.classList.remove('hidden');
+      }
+    }
+  </script>
+</body>
+</html>
